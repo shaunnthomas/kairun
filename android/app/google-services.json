@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "962618130279",
+    "project_id": "drona-9bc3a",
+    "storage_bucket": "drona-9bc3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962618130279:android:f044ff52ab15b8e69479c2",
+        "android_client_info": {
+          "package_name": "com.flutterflow.testing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962618130279-7hi653brdg5p61ndrim51ll9h5rg0vj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb5C97DL0Bj8y9CkbfkuwCUHON88IbDeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962618130279-7hi653brdg5p61ndrim51ll9h5rg0vj2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "962618130279-eqeaovgo7532k5scb9igk1ot0ldmlrns.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.testing"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

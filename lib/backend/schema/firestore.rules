@@ -1,0 +1,79 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function userDoc() {
+      return /databases/$(database)/documents/users/$(request.auth.uid);
+    }
+
+    match /users/{userId} {
+      allow read: if true;
+      allow create, update: if request.auth.uid == userId;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /question_db/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /saved_question/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /varc_activities/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /user_section_recommendations/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /dailyWorkoutsList/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /sectionResults/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /topicRecommendations/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /dilr_activities/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /quant_activities/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /userFeedback/{id} {
+      allow read, write: if true;
+    }
+
+    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
+    // security rules for this collection before publishing your app.
+    match /subscriptionPlans/{id} {
+      allow read, write: if true;
+    }
+  }
+}
