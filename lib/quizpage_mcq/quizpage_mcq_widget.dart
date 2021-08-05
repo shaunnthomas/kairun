@@ -340,36 +340,43 @@ class _QuizpageMcqWidgetState extends State<QuizpageMcqWidget> {
                                       Padding(
                                         padding:
                                             EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                        child: Card(
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          color: Color(0xFFE1F5FE),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.95,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.06,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.primaryColor,
+                                        child: InkWell(
+                                          onTap: () async {
+                                            scaffoldKey.currentState
+                                                .openDrawer();
+                                          },
+                                          child: Card(
+                                            clipBehavior:
+                                                Clip.antiAliasWithSaveLayer,
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
                                             ),
-                                            child: Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  10, 15, 10, 15),
-                                              child: Text(
-                                                column1QuestionDbRecord.option1,
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Raleway',
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.95,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.06,
+                                              decoration: BoxDecoration(
+                                                color: Color(0x41009FB7),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    10, 15, 10, 15),
+                                                child: Text(
+                                                  column1QuestionDbRecord
+                                                      .option1,
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1
+                                                      .override(
+                                                    fontFamily: 'Raleway',
+                                                  ),
                                                 ),
                                               ),
                                             ),
