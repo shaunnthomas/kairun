@@ -212,7 +212,8 @@ class _QuizpageMcqWidgetState extends State<QuizpageMcqWidget> {
             child: StreamBuilder<List<SectionResultsRecord>>(
               stream: querySectionResultsRecord(
                 queryBuilder: (sectionResultsRecord) => sectionResultsRecord
-                    .where('uid', isEqualTo: currentUserReference),
+                    .where('uid', isEqualTo: currentUserReference)
+                    .where('topicName', isEqualTo: widget.topicName),
                 singleRecord: true,
               ),
               builder: (context, snapshot) {
