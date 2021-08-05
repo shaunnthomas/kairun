@@ -16,6 +16,7 @@ import 'schema/dilr_activities_record.dart';
 import 'schema/quant_activities_record.dart';
 import 'schema/user_feedback_record.dart';
 import 'schema/subscription_plans_record.dart';
+import 'schema/user_question_response_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -34,6 +35,7 @@ export 'schema/dilr_activities_record.dart';
 export 'schema/quant_activities_record.dart';
 export 'schema/user_feedback_record.dart';
 export 'schema/subscription_plans_record.dart';
+export 'schema/user_question_response_record.dart';
 
 Stream<List<UsersRecord>> queryUsersRecord(
         {Query Function(Query) queryBuilder,
@@ -130,6 +132,14 @@ Stream<List<SubscriptionPlansRecord>> querySubscriptionPlansRecord(
         bool singleRecord = false}) =>
     queryCollection(
         SubscriptionPlansRecord.collection, SubscriptionPlansRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Stream<List<UserQuestionResponseRecord>> queryUserQuestionResponseRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(UserQuestionResponseRecord.collection,
+        UserQuestionResponseRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

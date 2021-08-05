@@ -12,6 +12,7 @@ import 'dilr_activities_record.dart';
 import 'quant_activities_record.dart';
 import 'user_feedback_record.dart';
 import 'subscription_plans_record.dart';
+import 'user_question_response_record.dart';
 
 import 'index.dart';
 
@@ -34,6 +35,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   QuantActivitiesRecord,
   UserFeedbackRecord,
   SubscriptionPlansRecord,
+  UserQuestionResponseRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

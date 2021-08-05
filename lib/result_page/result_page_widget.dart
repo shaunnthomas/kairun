@@ -20,6 +20,7 @@ class ResultPageWidget extends StatefulWidget {
     this.question2time,
     this.question3time,
     this.question4time,
+    this.score,
   }) : super(key: key);
 
   final String sectionName;
@@ -32,6 +33,7 @@ class ResultPageWidget extends StatefulWidget {
   final double question2time;
   final double question3time;
   final double question4time;
+  final int score;
 
   @override
   _ResultPageWidgetState createState() => _ResultPageWidgetState();
