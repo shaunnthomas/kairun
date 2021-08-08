@@ -3,6 +3,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../quizpage_mcq/quizpage_mcq_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -166,7 +167,7 @@ class _WorkoutDescWidgetState extends State<WorkoutDescWidget> {
                                         padding:
                                             EdgeInsets.fromLTRB(36, 10, 0, 0),
                                         child: Text(
-                                          'Reading Comprehension',
+                                          subTopicsListItem,
                                           style: FlutterFlowTheme.bodyText1
                                               .override(
                                             fontFamily: 'Raleway',
@@ -238,35 +239,35 @@ class _WorkoutDescWidgetState extends State<WorkoutDescWidget> {
                 );
               },
             ),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                    child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: 'Start Workout',
-                      options: FFButtonOptions(
-                        width: 320,
-                        height: 40,
-                        color: FlutterFlowTheme.positive,
-                        textStyle: FlutterFlowTheme.subtitle2.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.white,
-                        ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: 7,
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+              child: FFButtonWidget(
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => QuizpageMcqWidget(
+                        topicName: widget.topicName,
+                        topicIconURL: widget.topicIconURL,
                       ),
                     ),
-                  )
-                ],
+                  );
+                },
+                text: 'Start Workout',
+                options: FFButtonOptions(
+                  width: 320,
+                  height: 40,
+                  color: FlutterFlowTheme.positive,
+                  textStyle: FlutterFlowTheme.subtitle2.override(
+                    fontFamily: 'Poppins',
+                    color: Colors.white,
+                  ),
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1,
+                  ),
+                  borderRadius: 7,
+                ),
               ),
             )
           ],

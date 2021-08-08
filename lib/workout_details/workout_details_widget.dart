@@ -119,7 +119,7 @@ class _WorkoutDetailsWidgetState extends State<WorkoutDetailsWidget>
                       context,
                       MaterialPageRoute(
                         builder: (context) => WorkoutDescWidget(
-                          topicName: '',
+                          topicName: columnDailyWorkoutsListRecord.topicName,
                           sectionName:
                               columnDailyWorkoutsListRecord.sectionName,
                           topicIconURL:

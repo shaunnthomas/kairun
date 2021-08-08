@@ -1,8 +1,8 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../saved_question_description/saved_question_description_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +21,7 @@ class ResultPageWidget extends StatefulWidget {
     this.question3time,
     this.question4time,
     this.score,
+    this.topicName,
   }) : super(key: key);
 
   final String sectionName;
@@ -34,6 +35,7 @@ class ResultPageWidget extends StatefulWidget {
   final double question3time;
   final double question4time;
   final int score;
+  final String topicName;
 
   @override
   _ResultPageWidgetState createState() => _ResultPageWidgetState();
@@ -47,7 +49,7 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
     return StreamBuilder<List<SectionResultsRecord>>(
       stream: querySectionResultsRecord(
         queryBuilder: (sectionResultsRecord) =>
-            sectionResultsRecord.where('topicName', isEqualTo: '\$topicName'),
+            sectionResultsRecord.where('uid', isEqualTo: currentUserReference),
         singleRecord: true,
       ),
       builder: (context, snapshot) {
@@ -79,7 +81,7 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
             resultPageSectionResultsRecordList.first;
         return Scaffold(
           key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.secondaryColor,
+          backgroundColor: FlutterFlowTheme.tertiaryColor,
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -104,7 +106,7 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Reading Compehension',
+                                widget.topicName,
                                 style: FlutterFlowTheme.bodyText1.override(
                                   fontFamily: 'Raleway',
                                   color: FlutterFlowTheme.primaryColor,
@@ -142,10 +144,39 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
                                 width: 330,
                                 height: 200,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
+                                  color: Color(0x741E3030),
                                   border: Border.all(
                                     color: FlutterFlowTheme.secondaryColor,
                                   ),
+                                ),
+                                child: Builder(
+                                  builder: (context) {
+                                    final scoreRecordList =
+                                        (resultPageSectionResultsRecord
+                                                    .accuracyRecord
+                                                    ?.toList() ??
+                                                [])
+                                            .take(10)
+                                            .toList();
+                                    return ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: scoreRecordList.length,
+                                      itemBuilder:
+                                          (context, scoreRecordListIndex) {
+                                        final scoreRecordListItem =
+                                            scoreRecordList[
+                                                scoreRecordListIndex];
+                                        return Text(
+                                          scoreRecordListItem.toString(),
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Raleway',
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
                                 ),
                               ),
                             ),
@@ -161,12 +192,13 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
                         padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
                         child: Card(
                           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.secondaryColor,
+                          color: FlutterFlowTheme.tertiaryColor,
+                          elevation: 0,
                           child: Container(
                             width: 360,
                             height: 80,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.secondaryColor,
+                              color: FlutterFlowTheme.tertiaryColor,
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -181,7 +213,7 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
                                       alignment: Alignment(0, 0),
                                       child: Padding(
                                         padding:
-                                            EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                            EdgeInsets.fromLTRB(8, 10, 5, 5),
                                         child: Text(
                                           widget.question1.questiondescp,
                                           style: FlutterFlowTheme.bodyText1
@@ -196,458 +228,365 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
                                     )
                                   ],
                                 ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  'Time:',
-                                                  style: FlutterFlowTheme
-                                                      .bodyText1
-                                                      .override(
-                                                    fontFamily: 'Raleway',
-                                                    color: FlutterFlowTheme
-                                                        .primaryColor,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      5, 0, 0, 0),
-                                                  child: Text(
-                                                    '2m 5s',
-                                                    style: FlutterFlowTheme
-                                                        .bodyText1
-                                                        .override(
-                                                      fontFamily: 'Raleway',
-                                                      color: FlutterFlowTheme
-                                                          .positive,
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.fromLTRB(
-                                                0, 15, 0, 6),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  'View Solution',
-                                                  style: FlutterFlowTheme
-                                                      .bodyText1
-                                                      .override(
-                                                    fontFamily: 'Raleway',
-                                                    color: FlutterFlowTheme
-                                                        .primaryColor,
-                                                  ),
-                                                ),
-                                                Icon(
-                                                  Icons.chevron_right_outlined,
-                                                  color: Colors.black,
-                                                  size: 24,
-                                                )
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
-                        child: Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.secondaryColor,
-                          child: Container(
-                            width: 360,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.secondaryColor,
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Align(
-                                      alignment: Alignment(0, 0),
-                                      child: Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                        child: Text(
-                                          widget.question2.questiondescp,
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Raleway',
-                                            color:
-                                                FlutterFlowTheme.primaryColor,
-                                            fontSize: 20,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  'Time:',
-                                                  style: FlutterFlowTheme
-                                                      .bodyText1
-                                                      .override(
-                                                    fontFamily: 'Raleway',
-                                                    color: FlutterFlowTheme
-                                                        .primaryColor,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      5, 0, 0, 0),
-                                                  child: Text(
-                                                    '2m 5s',
-                                                    style: FlutterFlowTheme
-                                                        .bodyText1
-                                                        .override(
-                                                      fontFamily: 'Raleway',
-                                                      color: FlutterFlowTheme
-                                                          .positive,
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.fromLTRB(
-                                                0, 15, 0, 6),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  'View Solution',
-                                                  style: FlutterFlowTheme
-                                                      .bodyText1
-                                                      .override(
-                                                    fontFamily: 'Raleway',
-                                                    color: FlutterFlowTheme
-                                                        .primaryColor,
-                                                  ),
-                                                ),
-                                                Icon(
-                                                  Icons.chevron_right_outlined,
-                                                  color: Colors.black,
-                                                  size: 24,
-                                                )
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
-                        child: Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.secondaryColor,
-                          child: Container(
-                            width: 360,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.secondaryColor,
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Align(
-                                      alignment: Alignment(0, 0),
-                                      child: Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                        child: Text(
-                                          widget.question3.questiondescp,
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Raleway',
-                                            color:
-                                                FlutterFlowTheme.primaryColor,
-                                            fontSize: 20,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  'Time:',
-                                                  style: FlutterFlowTheme
-                                                      .bodyText1
-                                                      .override(
-                                                    fontFamily: 'Raleway',
-                                                    color: FlutterFlowTheme
-                                                        .primaryColor,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      5, 0, 0, 0),
-                                                  child: Text(
-                                                    '2m 5s',
-                                                    style: FlutterFlowTheme
-                                                        .bodyText1
-                                                        .override(
-                                                      fontFamily: 'Raleway',
-                                                      color: FlutterFlowTheme
-                                                          .positive,
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.fromLTRB(
-                                                0, 15, 0, 6),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  'View Solution',
-                                                  style: FlutterFlowTheme
-                                                      .bodyText1
-                                                      .override(
-                                                    fontFamily: 'Raleway',
-                                                    color: FlutterFlowTheme
-                                                        .primaryColor,
-                                                  ),
-                                                ),
-                                                Icon(
-                                                  Icons.chevron_right_outlined,
-                                                  color: Colors.black,
-                                                  size: 24,
-                                                )
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
-                        child: Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.secondaryColor,
-                          child: Container(
-                            width: 360,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.secondaryColor,
-                            ),
-                            child: InkWell(
-                              onTap: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        SavedQuestionDescriptionWidget(
-                                      questionDetails:
-                                          widget.question4.questionRef,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                                  child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Align(
-                                        alignment: Alignment(0, 0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                          child: Text(
-                                            widget.question4.questiondescp,
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Raleway',
-                                              color:
-                                                  FlutterFlowTheme.primaryColor,
-                                              fontSize: 20,
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
                                       Padding(
                                         padding:
-                                            EdgeInsets.fromLTRB(40, 0, 0, 0),
-                                        child: Column(
+                                            EdgeInsets.fromLTRB(0, 13, 0, 0),
+                                        child: Row(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  0, 8, 0, 0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    'Time:',
-                                                    style: FlutterFlowTheme
-                                                        .bodyText1
-                                                        .override(
-                                                      fontFamily: 'Raleway',
-                                                      color: FlutterFlowTheme
-                                                          .primaryColor,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            5, 0, 0, 0),
-                                                    child: Text(
-                                                      '2m 5s',
-                                                      style: FlutterFlowTheme
-                                                          .bodyText1
-                                                          .override(
-                                                        fontFamily: 'Raleway',
-                                                        color: FlutterFlowTheme
-                                                            .positive,
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
+                                            Text(
+                                              'Time:',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Raleway',
+                                                color: FlutterFlowTheme
+                                                    .primaryColor,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                             ),
                                             Padding(
                                               padding: EdgeInsets.fromLTRB(
-                                                  0, 15, 0, 6),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    'View Solution',
-                                                    style: FlutterFlowTheme
-                                                        .bodyText1
-                                                        .override(
-                                                      fontFamily: 'Raleway',
-                                                      color: FlutterFlowTheme
-                                                          .primaryColor,
-                                                    ),
-                                                  ),
-                                                  Icon(
-                                                    Icons
-                                                        .chevron_right_outlined,
-                                                    color: Colors.black,
-                                                    size: 24,
-                                                  )
-                                                ],
+                                                  5, 0, 0, 0),
+                                              child: Text(
+                                                '2m 5s',
+                                                style: FlutterFlowTheme
+                                                    .bodyText1
+                                                    .override(
+                                                  fontFamily: 'Raleway',
+                                                  color:
+                                                      FlutterFlowTheme.positive,
+                                                ),
                                               ),
                                             )
                                           ],
                                         ),
                                       )
                                     ],
-                                  )
-                                ],
-                              ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(15, 20, 0, 0),
+                                  child: Icon(
+                                    Icons.chevron_right_outlined,
+                                    color: Colors.black,
+                                    size: 24,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: FlutterFlowTheme.tertiaryColor,
+                          elevation: 0,
+                          child: Container(
+                            width: 360,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.tertiaryColor,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(0, 0),
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(8, 10, 5, 5),
+                                        child: Text(
+                                          widget.question1.questiondescp,
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Raleway',
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 13, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              'Time:',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Raleway',
+                                                color: FlutterFlowTheme
+                                                    .primaryColor,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  5, 0, 0, 0),
+                                              child: Text(
+                                                '2m 5s',
+                                                style: FlutterFlowTheme
+                                                    .bodyText1
+                                                    .override(
+                                                  fontFamily: 'Raleway',
+                                                  color:
+                                                      FlutterFlowTheme.positive,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(15, 20, 0, 0),
+                                  child: Icon(
+                                    Icons.chevron_right_outlined,
+                                    color: Colors.black,
+                                    size: 24,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: FlutterFlowTheme.tertiaryColor,
+                          elevation: 0,
+                          child: Container(
+                            width: 360,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.tertiaryColor,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(0, 0),
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(8, 10, 5, 5),
+                                        child: Text(
+                                          widget.question1.questiondescp,
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Raleway',
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 13, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              'Time:',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Raleway',
+                                                color: FlutterFlowTheme
+                                                    .primaryColor,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  5, 0, 0, 0),
+                                              child: Text(
+                                                '2m 5s',
+                                                style: FlutterFlowTheme
+                                                    .bodyText1
+                                                    .override(
+                                                  fontFamily: 'Raleway',
+                                                  color:
+                                                      FlutterFlowTheme.positive,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(15, 20, 0, 0),
+                                  child: Icon(
+                                    Icons.chevron_right_outlined,
+                                    color: Colors.black,
+                                    size: 24,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: FlutterFlowTheme.tertiaryColor,
+                          elevation: 0,
+                          child: Container(
+                            width: 360,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.tertiaryColor,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(0, 0),
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(8, 10, 5, 5),
+                                        child: Text(
+                                          widget.question1.questiondescp,
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Raleway',
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 13, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              'Time:',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Raleway',
+                                                color: FlutterFlowTheme
+                                                    .primaryColor,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  5, 0, 0, 0),
+                                              child: Text(
+                                                '2m 5s',
+                                                style: FlutterFlowTheme
+                                                    .bodyText1
+                                                    .override(
+                                                  fontFamily: 'Raleway',
+                                                  color:
+                                                      FlutterFlowTheme.positive,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(15, 20, 0, 0),
+                                  child: Icon(
+                                    Icons.chevron_right_outlined,
+                                    color: Colors.black,
+                                    size: 24,
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ),

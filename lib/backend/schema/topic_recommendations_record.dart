@@ -22,9 +22,6 @@ abstract class TopicRecommendationsRecord
   DocumentReference get uid;
 
   @nullable
-  int get changetoQuestionList;
-
-  @nullable
   bool get completedStatus;
 
   @nullable
@@ -35,7 +32,6 @@ abstract class TopicRecommendationsRecord
       builder
         ..topicName = ''
         ..questionList = ListBuilder()
-        ..changetoQuestionList = 0
         ..completedStatus = false;
 
   static CollectionReference get collection =>
@@ -60,7 +56,6 @@ abstract class TopicRecommendationsRecord
 Map<String, dynamic> createTopicRecommendationsRecordData({
   String topicName,
   DocumentReference uid,
-  int changetoQuestionList,
   bool completedStatus,
 }) =>
     serializers.toFirestore(
@@ -69,5 +64,4 @@ Map<String, dynamic> createTopicRecommendationsRecordData({
           ..topicName = topicName
           ..questionList = null
           ..uid = uid
-          ..changetoQuestionList = changetoQuestionList
           ..completedStatus = completedStatus));

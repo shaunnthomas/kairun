@@ -279,10 +279,8 @@ class _QuizpageMcqWidgetState extends State<QuizpageMcqWidget> {
                                   StreamBuilder<List<QuestionDbRecord>>(
                                     stream: queryQuestionDbRecord(
                                       queryBuilder: (questionDbRecord) =>
-                                          questionDbRecord
-                                              .where('question_id',
-                                                  isEqualTo: 1)
-                                              .orderBy('question_id'),
+                                          questionDbRecord.where('questionid',
+                                              isEqualTo: 1),
                                       singleRecord: true,
                                     ),
                                     builder: (context, snapshot) {
@@ -531,10 +529,8 @@ class _QuizpageMcqWidgetState extends State<QuizpageMcqWidget> {
                                   StreamBuilder<List<QuestionDbRecord>>(
                                     stream: queryQuestionDbRecord(
                                       queryBuilder: (questionDbRecord) =>
-                                          questionDbRecord
-                                              .where('question_id',
-                                                  isEqualTo: 2)
-                                              .orderBy('question_id'),
+                                          questionDbRecord.where('questionid',
+                                              isEqualTo: 2),
                                       singleRecord: true,
                                     ),
                                     builder: (context, snapshot) {
@@ -773,7 +769,7 @@ class _QuizpageMcqWidgetState extends State<QuizpageMcqWidget> {
                                   StreamBuilder<List<QuestionDbRecord>>(
                                     stream: queryQuestionDbRecord(
                                       queryBuilder: (questionDbRecord) =>
-                                          questionDbRecord.where('question_id',
+                                          questionDbRecord.where('questionid',
                                               isEqualTo: 3),
                                       singleRecord: true,
                                     ),
@@ -1013,11 +1009,8 @@ class _QuizpageMcqWidgetState extends State<QuizpageMcqWidget> {
                                   StreamBuilder<List<QuestionDbRecord>>(
                                     stream: queryQuestionDbRecord(
                                       queryBuilder: (questionDbRecord) =>
-                                          questionDbRecord
-                                              .where('question_id',
-                                                  isEqualTo: widget.questionList
-                                                      .changetoQuestionList)
-                                              .orderBy('question_id'),
+                                          questionDbRecord.where('questionid',
+                                              isEqualTo: 4),
                                       singleRecord: true,
                                     ),
                                     builder: (context, snapshot) {
@@ -1275,6 +1268,15 @@ class _QuizpageMcqWidgetState extends State<QuizpageMcqWidget> {
                                                       .doc()
                                                       .set(
                                                           userQuestionResponseCreateData);
+
+                                                  final topicRecommendationsUpdateData =
+                                                      createTopicRecommendationsRecordData(
+                                                    completedStatus: true,
+                                                  );
+                                                  await quizpageMcqTopicRecommendationsRecord
+                                                      .reference
+                                                      .update(
+                                                          topicRecommendationsUpdateData);
                                                 },
                                                 text: 'Finish',
                                                 options: FFButtonOptions(

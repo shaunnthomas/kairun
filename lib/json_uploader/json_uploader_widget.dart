@@ -798,9 +798,7 @@ class _JsonUploaderWidgetState extends State<JsonUploaderWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  final questionDbCreateData = createQuestionDbRecordData(
-                    questionId: int.parse(textController1.text),
-                  );
+                  final questionDbCreateData = createQuestionDbRecordData();
                   await QuestionDbRecord.collection
                       .doc()
                       .set(questionDbCreateData);

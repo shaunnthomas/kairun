@@ -12,10 +12,6 @@ abstract class QuestionDbRecord
       _$questionDbRecordSerializer;
 
   @nullable
-  @BuiltValueField(wireName: 'question_id')
-  int get questionId;
-
-  @nullable
   String get passage;
 
   @nullable
@@ -70,11 +66,13 @@ abstract class QuestionDbRecord
   int get incorrectAttempts;
 
   @nullable
+  int get questionid;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(QuestionDbRecordBuilder builder) => builder
-    ..questionId = 0
     ..passage = ''
     ..section = ''
     ..option1 = ''
@@ -88,7 +86,8 @@ abstract class QuestionDbRecord
     ..titaSolution = ''
     ..questiondescp = ''
     ..correctAttempts = 0
-    ..incorrectAttempts = 0;
+    ..incorrectAttempts = 0
+    ..questionid = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('question_db');
@@ -108,7 +107,6 @@ abstract class QuestionDbRecord
 }
 
 Map<String, dynamic> createQuestionDbRecordData({
-  int questionId,
   String passage,
   String section,
   String option1,
@@ -124,11 +122,11 @@ Map<String, dynamic> createQuestionDbRecordData({
   DocumentReference questionRef,
   int correctAttempts,
   int incorrectAttempts,
+  int questionid,
 }) =>
     serializers.toFirestore(
         QuestionDbRecord.serializer,
         QuestionDbRecord((q) => q
-          ..questionId = questionId
           ..passage = passage
           ..section = section
           ..option1 = option1
@@ -143,4 +141,5 @@ Map<String, dynamic> createQuestionDbRecordData({
           ..questiondescp = questiondescp
           ..questionRef = questionRef
           ..correctAttempts = correctAttempts
-          ..incorrectAttempts = incorrectAttempts));
+          ..incorrectAttempts = incorrectAttempts
+          ..questionid = questionid));
