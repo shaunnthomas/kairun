@@ -319,16 +319,23 @@ class _QuizpageMcqWidgetState extends State<QuizpageMcqWidget> {
                                             Padding(
                                               padding: EdgeInsets.fromLTRB(
                                                   7, 7, 7, 0),
-                                              child: Text(
-                                                column1QuestionDbRecord.passage,
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Montserrat',
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                  fontWeight: FontWeight.w300,
-                                                ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    column1QuestionDbRecord
+                                                        .passage,
+                                                    style: FlutterFlowTheme
+                                                        .bodyText1
+                                                        .override(
+                                                      fontFamily: 'Montserrat',
+                                                      color: FlutterFlowTheme
+                                                          .primaryColor,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                    ),
+                                                  )
+                                                ],
                                               ),
                                             ),
                                             Padding(

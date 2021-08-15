@@ -138,15 +138,7 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                     width: 1,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8),
-                                                    bottomRight:
-                                                        Radius.circular(8),
-                                                    topLeft: Radius.circular(8),
-                                                    topRight:
-                                                        Radius.circular(8),
-                                                  ),
+                                                      BorderRadius.circular(8),
                                                 ),
                                                 focusedBorder:
                                                     OutlineInputBorder(
@@ -155,15 +147,7 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                     width: 1,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8),
-                                                    bottomRight:
-                                                        Radius.circular(8),
-                                                    topLeft: Radius.circular(8),
-                                                    topRight:
-                                                        Radius.circular(8),
-                                                  ),
+                                                      BorderRadius.circular(8),
                                                 ),
                                                 filled: true,
                                                 fillColor: Color(0xFF3124A1),
@@ -210,15 +194,7 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                     width: 1,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8),
-                                                    bottomRight:
-                                                        Radius.circular(8),
-                                                    topLeft: Radius.circular(8),
-                                                    topRight:
-                                                        Radius.circular(8),
-                                                  ),
+                                                      BorderRadius.circular(8),
                                                 ),
                                                 focusedBorder:
                                                     OutlineInputBorder(
@@ -227,15 +203,7 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                     width: 1,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8),
-                                                    bottomRight:
-                                                        Radius.circular(8),
-                                                    topLeft: Radius.circular(8),
-                                                    topRight:
-                                                        Radius.circular(8),
-                                                  ),
+                                                      BorderRadius.circular(8),
                                                 ),
                                                 filled: true,
                                                 fillColor: Color(0xFF3124A1),
@@ -582,16 +550,8 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                         width: 1,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.only(
-                                                        bottomLeft:
-                                                            Radius.circular(8),
-                                                        bottomRight:
-                                                            Radius.circular(8),
-                                                        topLeft:
-                                                            Radius.circular(8),
-                                                        topRight:
-                                                            Radius.circular(8),
-                                                      ),
+                                                          BorderRadius.circular(
+                                                              8),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
@@ -601,16 +561,8 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                         width: 1,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.only(
-                                                        bottomLeft:
-                                                            Radius.circular(8),
-                                                        bottomRight:
-                                                            Radius.circular(8),
-                                                        topLeft:
-                                                            Radius.circular(8),
-                                                        topRight:
-                                                            Radius.circular(8),
-                                                      ),
+                                                          BorderRadius.circular(
+                                                              8),
                                                     ),
                                                     filled: true,
                                                     fillColor:
@@ -674,18 +626,8 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(8),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          8),
-                                                              topLeft: Radius
-                                                                  .circular(8),
-                                                              topRight: Radius
-                                                                  .circular(8),
-                                                            ),
+                                                                    .circular(
+                                                                        8),
                                                           ),
                                                           focusedBorder:
                                                               OutlineInputBorder(
@@ -697,18 +639,8 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(8),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          8),
-                                                              topLeft: Radius
-                                                                  .circular(8),
-                                                              topRight: Radius
-                                                                  .circular(8),
-                                                            ),
+                                                                    .circular(
+                                                                        8),
                                                           ),
                                                           filled: true,
                                                           fillColor:
@@ -775,18 +707,8 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(8),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          8),
-                                                              topLeft: Radius
-                                                                  .circular(8),
-                                                              topRight: Radius
-                                                                  .circular(8),
-                                                            ),
+                                                                    .circular(
+                                                                        8),
                                                           ),
                                                           focusedBorder:
                                                               OutlineInputBorder(
@@ -798,18 +720,8 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(8),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          8),
-                                                              topLeft: Radius
-                                                                  .circular(8),
-                                                              topRight: Radius
-                                                                  .circular(8),
-                                                            ),
+                                                                    .circular(
+                                                                        8),
                                                           ),
                                                           filled: true,
                                                           fillColor:
@@ -867,16 +779,8 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                         width: 1,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.only(
-                                                        bottomLeft:
-                                                            Radius.circular(8),
-                                                        bottomRight:
-                                                            Radius.circular(8),
-                                                        topLeft:
-                                                            Radius.circular(8),
-                                                        topRight:
-                                                            Radius.circular(8),
-                                                      ),
+                                                          BorderRadius.circular(
+                                                              8),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
@@ -886,16 +790,8 @@ class _LoginSignupWidgetState extends State<LoginSignupWidget> {
                                                         width: 1,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.only(
-                                                        bottomLeft:
-                                                            Radius.circular(8),
-                                                        bottomRight:
-                                                            Radius.circular(8),
-                                                        topLeft:
-                                                            Radius.circular(8),
-                                                        topRight:
-                                                            Radius.circular(8),
-                                                      ),
+                                                          BorderRadius.circular(
+                                                              8),
                                                     ),
                                                     filled: true,
                                                     fillColor:
